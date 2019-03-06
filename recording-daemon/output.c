@@ -58,6 +58,11 @@ int output_config(output_t *output, const format_t *requested_format, format_t *
 	const char *err;
 	int av_ret = 0;
 
+	dbg("output fmts %i/%i/%i %i/%i/%i",
+			requested_format->format, requested_format->channels, requested_format->clockrate,
+			output->encoder->requested_format.format, output->encoder->requested_format.channels,
+			output->encoder->requested_format.clockrate);
+
 	// anything to do?
 	if (G_LIKELY(format_eq(requested_format, &output->encoder->requested_format))) {
 		if (actual_format)

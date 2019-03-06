@@ -69,6 +69,11 @@ resample:
 	swr_frame->nb_samples = dst_samples;
 	swr_frame->sample_rate = to_format->clockrate;
 	err = "failed to get resample buffers";
+	ilog(LOG_DEBUG, "resample frame params: f %i cl %lu ns %i sr %i",
+			swr_frame->format,
+			(long unsigned) swr_frame->channel_layout,
+			swr_frame->nb_samples,
+			swr_frame->sample_rate);
 	if ((errcode = av_frame_get_buffer(swr_frame, 0)) < 0)
 		goto err;
 

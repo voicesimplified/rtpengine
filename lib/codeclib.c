@@ -994,6 +994,11 @@ int encoder_config_fmtp(encoder_t *enc, const codec_def_t *def, int bitrate, int
 	if (!def->codec_type)
 		goto err;
 
+	ilog(LOG_DEBUG, "encoder fmts %i/%i/%i %i/%i/%i",
+			requested_format->format, requested_format->channels, requested_format->clockrate,
+			enc->requested_format.format, enc->requested_format.channels,
+			enc->requested_format.clockrate);
+
 	// anything to do?
 	if (G_LIKELY(format_eq(requested_format, &enc->requested_format)))
 		goto done;

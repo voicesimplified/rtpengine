@@ -264,6 +264,7 @@ static void packet_decode(ssrc_t *ssrc, packet_t *packet) {
 			outp = mf->mix_out;
 		else if (ssrc->output)
 			outp = ssrc->output;
+		dbg("creating decoder with %p %p %p", outp, mf->mix_out, ssrc->output);
 		ssrc->decoders[payload_type] = decoder_new(payload_str, outp);
 		pthread_mutex_unlock(&mf->mix_lock);
 		if (!ssrc->decoders[payload_type]) {

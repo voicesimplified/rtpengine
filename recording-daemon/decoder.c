@@ -69,6 +69,7 @@ decode_t *decoder_new(const char *payload_str, output_t *outp) {
 		out_format.clockrate = resample_audio;
 	// mono/stereo mixing goes here: out_format.channels = ...
 	if (outp) {
+		dbg("encoder %p fmt %i", outp->encoder, outp->encoder ? outp->encoder->requested_format.format : -1);
 		// if this output has been configured already, re-use the same format
 		if (outp->encoder && outp->encoder->requested_format.format != -1)
 			out_format = outp->encoder->requested_format;
